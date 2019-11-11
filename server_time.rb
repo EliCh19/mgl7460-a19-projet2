@@ -1,9 +1,6 @@
 require 'date'
 class MGL7460_Ruby
 
-@@numFirst
-@@numLast
-
 #puts d.strftime("%Y/%m/%d %H:%M")
 #=> "2019/11/01 20:09"
 #puts d.next_month.strftime("%Y/%m/%d %H:%M")
@@ -12,9 +9,8 @@ class MGL7460_Ruby
 #name = gets.chop
 #puts "Hello, #{name}! I'm Ruby!"
 
+
 def main
-@d
-@h
 @d = DateTime.now
 @h = @d.strftime("%H:%M:%S")
 readFile
@@ -35,7 +31,20 @@ numbers.collect! &:to_i #=> convert string numbers to integer
 calculateDays(@numFirst,@numLast)
 end
 
+=begin
+def initialize(num)
+  raise unless num.is_a?(Numeric)
+  @x = num
+end
+
+
+def add(y)
+  @x + y
+end
+=end
+  
 def calculateDays(num1,num2)
+
 	@f = num1/86400
 	@remain_active = num1-(@f * 86400)
 
@@ -75,18 +84,22 @@ def calculateDays(num1,num2)
 		
 
 	if (@f <1)
-		puts "#{@h} up #{x}"
+		@r1 = "#{@h} up #{x}"
+		puts @r1
 	else
-		puts "#{@h} up #{@f} days, #{x}"
+		@r1 = "#{@h} up #{@f} days, #{x}" 
+		puts @r1
 	end
 
 	if (@s <1)
-		puts "#{@h} idle #{y}"
+		@r2 = "#{@h} idle #{y}"
+		puts @r2
 	else
-		puts "#{@h} idle #{@s} days, #{y}"
+		@r2 = "#{@h} idle #{@s} days, #{y}" 
+		puts @r2
 	end
 
-
+	results(@r1,@r2)
 	#case hour_remained_active
 	#when 0..1
 	#	puts "#{h} up 5 Min"
@@ -101,7 +114,11 @@ def calculateDays(num1,num2)
 
 end
 
+def results(result1,result2)
+	result1 + " , " + result2	
 end
 
+end
 myProgram = MGL7460_Ruby.new()
 myProgram.main
+#myProgram.calculateDays(150055117.05,177000.00)
